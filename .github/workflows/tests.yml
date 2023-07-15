@@ -6,10 +6,12 @@ jobs:
   unit-tests:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - name: setup node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18.16.1
       - name: install dependencies
@@ -22,15 +24,15 @@ jobs:
           npx commitlint --version
       - name: run unit tests
         run: npm run test
-        
-jobs:
   e2e-tests:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - name: setup node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18.16.1
       - name: install dependencies
