@@ -23,11 +23,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           goose: geese
-        with:
-          release_version: ${{ github.ref_name }}
-          date: ${{ steps.date.output.date }}
-        
-  
-        
-      
-      
+          RELEASE_VERSION: ${{ github.ref_name }}
+          DATE: ${{ steps.date.output.date }}

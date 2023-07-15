@@ -1,8 +1,8 @@
 ---
-title: Release {{ tools.inputs.release_version }}
+title: Release {{ env.RELEASE_VERSION }}
 assignees: damirios
 labels: release
 ---
-Release. Version: {{ tools.inputs.release_version }}
-Author: {{ tools.context.actor }}
-Date: {{ env.date }}
+# Release. Version: {{ payload.sender.login }}
+## Author: {{ actor }}
+## Date: {{ env.DATE }}
