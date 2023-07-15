@@ -1,6 +1,8 @@
 ---
-title: Someone just pushed
+title: Release {{ tools.inputs.release_version }}
 assignees: damirios
-labels: test
+labels: release
 ---
-Someone just pushed, oh no! Here's who did it: {{ env.goose }}.
+Release. Version: {{ tools.inputs.release_version }}
+Author: {{ tools.context.actor }}
+Date: {{ env.date }}
