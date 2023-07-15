@@ -36,7 +36,6 @@ jobs:
         with:
           name: build-artifact
   release-issue:
-    needs: build-and-artifact
     runs-on: ubuntu-22.04
     permissions:
       contents: read
@@ -49,10 +48,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           goose: geese
-        with:
-          assingees: damir
-          update_existing: true
-          search_existing: all
         
       
       
