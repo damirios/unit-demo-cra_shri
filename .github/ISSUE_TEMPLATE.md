@@ -1,6 +1,6 @@
 ---
 title: Someone just pushed
-assignees: damir
-labels: bug
+assignees: damirios
+labels: test
 ---
 Someone just pushed, oh no! Here's who did it: {{ env.goose }}.
