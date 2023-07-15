@@ -15,12 +15,12 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
-      - name: Get current date
-        run: echo "date=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
+      # - name: Get current date
+      #   run: echo "date=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
       - name: create an issue
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           goose: geese
           RELEASE_VERSION: ${{ github.ref_name }}
-          DATE: ${{ env.date }}
+          DATE: today
