@@ -7,34 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-artifact:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.16.1
-      - name: install dependencies
-        run: npm ci
-      - name: print versions
-        run: |
-          git --version
-          node --version
-          npm --version
-          npx commitlint --version
-      - name: build application
-        run: npm run build
-      - name: upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          path: build
-          name: build-artifact
-      - name: get build artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifact
   release-issue:
     runs-on: ubuntu-22.04
     permissions:
