@@ -26,6 +26,7 @@ jobs:
         with:
           query: 'label:release'
           token: ${{ github.token }}
+          format: list
       - name: show found issues
         run: echo "${{ toJSON(steps.issues.outputs) }}"
       # - name: create an issue
