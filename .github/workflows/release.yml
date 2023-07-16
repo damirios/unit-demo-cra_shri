@@ -29,6 +29,8 @@ jobs:
           commitMode: true
       - name: show changelog
         run: echo "${{ toJSON(steps.build_changelog.outputs.changelog) }}"
+      - name: show goose
+        run: echo "goose"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
