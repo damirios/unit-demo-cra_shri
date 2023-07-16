@@ -5,9 +5,9 @@ labels: release
 ---
 # Release {{ env.RELEASE_VERSION }}
 ## Release info
-### **version**: {{ env.RELEASE_VERSION }}
-### **author**: {{ actor }}
-### **date**: {{ env.DATE }}
+**version:** {{ env.RELEASE_VERSION }}
+**author:** {{ actor }}
+**date:** {{ env.DATE }}
 
 ## Changelog
 {{ env.CHANGELOG }}
