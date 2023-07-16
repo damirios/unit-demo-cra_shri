@@ -23,7 +23,7 @@ jobs:
       - name: show tags
         id: display
         run: |
-          echo 'Output from find tag: ${{ steps.tagger.output.tag }}'
+          echo 'Output from find tag: ${{ steps.tagger.outputs.tag }}'
       # - name: build changelog
       #   id: build_changelog
       #   uses: mikepenz/release-changelog-builder-action@v3
