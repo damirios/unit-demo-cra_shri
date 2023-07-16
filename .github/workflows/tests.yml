@@ -2,9 +2,9 @@ name: run autotests on PR or Release
 
 on:
   pull_request:
-  # workflow_run:
-  #   workflows:
-  #     - release on new release tag
+  workflow_run:
+    workflows:
+      - release on new release tag
 
 jobs:
   unit-tests:
