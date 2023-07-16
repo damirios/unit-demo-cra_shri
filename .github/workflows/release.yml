@@ -21,12 +21,12 @@ jobs:
         with:
           include: 'v*'
       - name: show commits
-        run: echo "${{ toJSON(github.event.commits) }}"
-      - name: create an issue
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ github.ref_name }}
-          DATE: ${{ github.event.repository.updated_at }}
-          CHANGELOG: ${{ toJSON(github.event.commits) }}
+        run: echo "${{ toJSON(github.event) }}"
+      # - name: create an issue
+      #   uses: JasonEtco/create-an-issue@v2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     RELEASE_VERSION: ${{ github.ref_name }}
+      #     DATE: ${{ github.event.repository.updated_at }}
+      #     CHANGELOG: ${{ toJSON(github.event.commits) }}
           
