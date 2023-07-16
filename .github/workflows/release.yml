@@ -10,7 +10,7 @@ jobs:
   release-issue:
     runs-on: ubuntu-22.04
     permissions:
-      contents: read
+      contents: write
       issues: write
     steps:
       - name: checkout code
@@ -20,8 +20,6 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-        permissions:
-        contents: write
       - name: conventional changelog action
         uses: TriPSs/conventional-changelog-action@v3
         with:
