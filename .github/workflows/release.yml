@@ -36,6 +36,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_VERSION: ${{ github.ref_name }}
           CHANGELOG: ${{ steps.changelog.outputs.changes }}
+          DATE: ${{ env.DATE }}
       - name: create release branch
         run: |
           git checkout -b release@${{ github.ref_name }}
