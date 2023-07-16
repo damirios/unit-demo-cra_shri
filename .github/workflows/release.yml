@@ -28,13 +28,11 @@ jobs:
           fromTag: ${{ github.ref_name }}
           toTag: ${{ steps.tagger.outputs.tag }}
           writeToFile: false
-      - name: write geese
-        run: echo "${{ toJSON(steps.changelog) }}"
-      # - name: create an issue
-      #   uses: JasonEtco/create-an-issue@v2
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     RELEASE_VERSION: ${{ github.ref_name }}
-      #     DATE: ${{ github.event.repository.updated_at }}
-      #     CHANGELOG: ${{ toJSON(github.event.commits) }}
+      - name: create an issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ github.ref_name }}
+          DATE: ${{ github.event.repository.updated_at }}
+          CHANGELOG: ${{ steps.changelog.outputs.changes }}
           
