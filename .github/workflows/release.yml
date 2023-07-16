@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-issue:
+  changelog-release:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -35,4 +35,18 @@ jobs:
           RELEASE_VERSION: ${{ github.ref_name }}
           DATE: ${{ github.event.repository.updated_at }}
           CHANGELOG: ${{ steps.changelog.outputs.changes }}
-          
+  release-branch:
+    needs: changelog-release
+    runs-on: ubuntu-22.04
+      steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: Create Branch
+        id: create_branch
+        uses: lablnet/create-branch-from-tag@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
