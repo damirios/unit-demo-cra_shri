@@ -20,15 +20,12 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: Find all issues
-        id: issues
-        uses: lee-dohm/select-matching-issues@v1
+        permissions:
+        contents: write
+      - name: conventional changelog action
+        uses: TriPSs/conventional-changelog-action@v3
         with:
-          query: 'label:release'
-          token: ${{ github.token }}
-          format: list
-      - name: show found issues
-        run: echo "${{ toJSON(steps.issues.outputs) }}"
+          github-token: ${{ secrets.github_token }}
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
