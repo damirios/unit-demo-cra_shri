@@ -28,12 +28,13 @@ jobs:
           fromTag: ${{ github.ref_name }}
           toTag: ${{ steps.tagger.outputs.tag }}
           writeToFile: false
+      - name: get date and time
+        run: echo "DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: create an issue
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_VERSION: ${{ github.ref_name }}
-          DATE: ${{ github.event.repository.updated_at }}
           CHANGELOG: ${{ steps.changelog.outputs.changes }}
       - name: create release branch
         run: |
