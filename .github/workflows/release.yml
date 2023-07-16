@@ -21,7 +21,11 @@ jobs:
         with:
           include: 'v*'
       - name: show commits
-        run: echo "${{ toJSON(github.event) }}"
+        run: echo "${{ toJSON(github.event.commits) }}"
+      - name: show commitmess
+        run: echo "${{ toJSON(github.event.commits.message) }}"
+      - name: show commits1
+        run: echo "${{ toJSON(github.event.head_commit) }}"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
