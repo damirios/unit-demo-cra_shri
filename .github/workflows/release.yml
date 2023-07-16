@@ -30,6 +30,8 @@ jobs:
           writeToFile: false
       - name: show commits
         run: ${{ steps.changelog.outputs.changes }}
+      - name: write goose
+        run: echo "goose!"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
