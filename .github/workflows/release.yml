@@ -28,7 +28,7 @@ jobs:
           fromTag: ${{ github.ref_name }}
           toTag: ${{ steps.tagger.outputs.tag }}
           writeToFile: false
-      - name: write goose
+      - name: write geese
         run: echo "${{ toJSON(steps.changelog) }}"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
