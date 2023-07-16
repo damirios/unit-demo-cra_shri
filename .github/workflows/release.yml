@@ -37,7 +37,7 @@ jobs:
           CHANGELOG: ${{ steps.changelog.outputs.changes }}
       - name: create release branch
         run: |
-          git checkout -b release@${{ steps.tagger.outputs.tag }}
-          git push origin release@${{ steps.tagger.outputs.tag }}
+          git checkout -b release@${{ github.ref_name }}
+          git push origin release@${{ github.ref_name }}
 
       
