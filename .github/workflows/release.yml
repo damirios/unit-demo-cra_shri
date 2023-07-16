@@ -20,10 +20,16 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: show all commits
-        run: echo "${{ github.event }}"
-      - name: new commit
-        run : echo "${{ toJSON(github) }}"
+      - name: Update CHANGELOG
+        id: changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ github.token }}
+          fromTag: ${{ github.ref_name }}
+          toTag: ${{ steps.tagger.outputs.tag }}
+          writeToFile: false
+      - name: show commits
+        run: ${{ steps.changelog.outputs.changes }}
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
