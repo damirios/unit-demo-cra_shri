@@ -20,10 +20,14 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: conventional changelog action
-        uses: TriPSs/conventional-changelog-action@v3
+      - name: "Build Changelog"
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v3
         with:
-          github-token: ${{ secrets.github_token }}
+          fromTag: ${{ steps.tagger.outputs.tag }}
+          toTag: ${{ github.ref_name }}
+      - name: show changelog
+        run: echo "${{ steps.build_changelog }}"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
