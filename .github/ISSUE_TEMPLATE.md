@@ -10,3 +10,4 @@ labels: release
 ### date: {{ env.DATE }}
 
 ## Changelog
+{{ env.CHANGELOG }}
