@@ -26,6 +26,7 @@ jobs:
         with:
           fromTag: ${{ steps.tagger.outputs.tag }}
           toTag: ${{ github.ref_name }}
+          commitMode: true
       - name: show changelog
         run: echo "${{ toJSON(steps.build_changelog) }}"
       # - name: create an issue
