@@ -20,18 +20,17 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: show tags
-        id: display
-        run: |
-          echo 'Output from find tag: ${{ toJSON(steps.tagger) }}'
-      # - name: build changelog
-      #   id: build_changelog
-      #   uses: mikepenz/release-changelog-builder-action@v3
-      # - name: create an issue
-      #   uses: JasonEtco/create-an-issue@v2
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     RELEASE_VERSION: ${{ github.ref_name }}
-      #     DATE: ${{ github.event.repository.updated_at }}
-      #     CHANGELOG: ${{ steps.build_changelog.outputs.changelog }}
+      - name: build changelog
+        id: build_changelog
+        uses: scottbrenner/generate-changelog-action@master
+        with:
+          from-tag: ${{ steps.tagger.outputs.tag }}
+          to-tag: HEAD
+      - name: create an issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ github.ref_name }}
+          DATE: ${{ github.event.repository.updated_at }}
+          CHANGELOG: ${{ steps.build_changelog.outputs.changelog }}
           
