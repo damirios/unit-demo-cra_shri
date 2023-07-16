@@ -21,7 +21,7 @@ jobs:
         with:
           include: 'v*'
       - name: show all commits
-        run: echo "${{ toJSON(github.event) }}"
+        run: echo "${{ github.event }}"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
