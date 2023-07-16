@@ -22,10 +22,11 @@ jobs:
           include: 'v*'
       - name: build changelog
         id: build_changelog
-        uses: scottbrenner/generate-changelog-action@master
+        uses: requarks/changelog-action@v1
         with:
-          from-tag: ${{ steps.tagger.outputs.tag }}
-          to-tag: HEAD
+          token: ${{ github.token }}
+          toTag: ${{ steps.tagger.outputs.tag }}
+          fromTag: ${{ github.ref_name }}
       - name: show changelog
         run: echo "${{ toJSON(steps.build_changelog) }}"
       - name: create an issue
@@ -34,5 +35,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_VERSION: ${{ github.ref_name }}
           DATE: ${{ github.event.repository.updated_at }}
-          CHANGELOG: ${{ steps.build_changelog.outputs.changelog }}
+          CHANGELOG: ${{ steps.build_changelog.outputs.changes }}
           
