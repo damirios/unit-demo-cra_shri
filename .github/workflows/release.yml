@@ -36,5 +36,5 @@ jobs:
           DATE: ${{ github.event.repository.updated_at }}
           CHANGELOG: ${{ steps.changelog.outputs.changes }}
       - name: create release branch
-        run: git branch release@${{ steps.tagger.outputs.tag }}
+        run: git checkout -b release@${{ steps.tagger.outputs.tag }}
       
