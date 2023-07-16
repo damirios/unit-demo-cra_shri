@@ -20,20 +20,13 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: build changelog
-        id: build_changelog
-        uses: requarks/changelog-action@v1
-        with:
-          token: ${{ github.token }}
-          toTag: ${{ steps.tagger.outputs.tag }}
-          fromTag: ${{ github.ref_name }}
-      - name: show changelog
-        run: echo "${{ toJSON(steps.build_changelog) }}"
+      - name: show commits
+        run: echo "${{ toJSON(github.event.commits) }}"
       - name: create an issue
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_VERSION: ${{ github.ref_name }}
           DATE: ${{ github.event.repository.updated_at }}
-          CHANGELOG: ${{ steps.build_changelog.outputs.changes }}
+          CHANGELOG: ${{ toJSON(github.event.commits) }}
           
