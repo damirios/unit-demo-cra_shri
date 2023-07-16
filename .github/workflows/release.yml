@@ -26,6 +26,8 @@ jobs:
         with:
           from-tag: ${{ steps.tagger.outputs.tag }}
           to-tag: HEAD
+      - name: show changelog
+        run: echo "${{ toJSON(steps.build_changelog) }}"
       - name: create an issue
         uses: JasonEtco/create-an-issue@v2
         env:
