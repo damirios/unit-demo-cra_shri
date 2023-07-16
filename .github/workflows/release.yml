@@ -28,7 +28,7 @@ jobs:
           toTag: ${{ github.ref_name }}
           commitMode: true
       - name: show changelog
-        run: echo "${{ toJSON(steps.build_changelog) }}"
+        run: echo "${{ toJSON(steps.build_changelog.outputs.changelog) }}"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
