@@ -20,16 +20,8 @@ jobs:
         uses: jimschubert/query-tag-action@v1
         with:
           include: 'v*'
-      - name: "Build Changelog"
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v3
-        with:
-          fromTag: ${{ steps.tagger.outputs.tag }}
-          toTag: ${{ github.ref_name }}
-          commitMode: true
-          outputFile: ".github/CHANGELOG.md"
-      - name: show changelog
-        run: echo "${{ toJSON(steps.build_changelog.outputs.changelog) }}"
+      - name: show all commits
+        run: echo "${{ toJSON(github.event) }}"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
