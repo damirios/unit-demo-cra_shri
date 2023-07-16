@@ -18,7 +18,9 @@ jobs:
       - name: set current date as env variable
         run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: show all commits
-        run: echo toJSON(${{ github.event.commits }})
+        run: echo "toJSON(github.event)""
+      - name: show all commits1
+        run: echo "toJSON(github.events)""
       - name: create an issue
         uses: JasonEtco/create-an-issue@v2
         env:
