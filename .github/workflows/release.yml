@@ -19,7 +19,7 @@ jobs:
         id: tagger
         uses: jimschubert/query-tag-action@v1
         with:
-          include: 'v\d+'
+          include: 'v*'
       - name: show tags
         id: display
         run: |
