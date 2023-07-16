@@ -27,10 +27,9 @@ jobs:
           fromTag: ${{ steps.tagger.outputs.tag }}
           toTag: ${{ github.ref_name }}
           commitMode: true
+          outputFile: ".github/CHANGELOG.md"
       - name: show changelog
         run: echo "${{ toJSON(steps.build_changelog.outputs.changelog) }}"
-      - name: show goose
-        run: echo "goose"
       # - name: create an issue
       #   uses: JasonEtco/create-an-issue@v2
       #   env:
