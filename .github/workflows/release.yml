@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - v\d+
-  workflow_dispatch:
 
 jobs:
   changelog-release:
@@ -15,6 +14,21 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.1
+      - name: install dependencies
+        run: npm ci
+      - name: run unit tests
+        run: npm run test
+      - name: install headless playwright
+        run: npx playwright install --with-deps chromium
+      - name: run e2e tests
+        run: npm run e2e-ci
+      - name: build application
+        run: npm run build
+      
       - name: get last correct tag
         id: tagger
         uses: jimschubert/query-tag-action@v1
@@ -37,9 +51,15 @@ jobs:
           RELEASE_VERSION: ${{ github.ref_name }}
           CHANGELOG: ${{ steps.changelog.outputs.changes }}
           DATE: ${{ env.DATE }}
+          DEPLOYLINK: ${{ env.DEPLOYLINK }}
       - name: create release branch
         run: |
           git checkout -b release@${{ github.ref_name }}
           git push origin release@${{ github.ref_name }}
-
       
+      - name: deploy on gh-pages
+        run: |
+          git remote set-url https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
